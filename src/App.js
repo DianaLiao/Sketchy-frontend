@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
+import { useState } from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import CollectionShow from "./components/CollectionShow";
+import CollectionsIndex from "./components/CollectionsIndex";
+import CreateDrawing from "./components/CreateDrawing";
+import DrawingShow from "./components/DrawingShow";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import LoginPage from "./components/LoginPage";
+// import MainContainer from "./components/MainContainer";
+import NavMenu from "./components/NavMenu";
 
 function App() {
+
+  const [notLoggedIn, setLoggedIn] = useState(false)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <main>
+        {notLoggedIn ? <LoginPage /> : 
+        <>
+        <Router>
+          <NavMenu />  
+
+          <Switch>  
+            <Route path="/new-drawing">
+              <CreateDrawing />
+            </Route>
+            <Route exact path="/collections">
+              <CollectionsIndex />
+            </Route>
+            <Route path="/collections/:id">
+              <CollectionShow />
+            </Route>
+            <Route path="/drawings/:id">
+              <DrawingShow />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+        </>
+        }
+      </main>
     </div>
-  );
+  )
 }
 
 export default App;
