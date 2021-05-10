@@ -4,8 +4,8 @@ const CanvasContext = React.createContext();
 
 export const CanvasProvider = ({ children }) => {
   const [isDrawing, setIsDrawing] = useState(false)
-  const canvasRef = useRef(null);
-  const contextRef = useRef(null);
+  let canvasRef = useRef(null);
+  let contextRef = useRef(null);
 
   const prepareCanvas = () => {
     const canvas = canvasRef.current
@@ -53,7 +53,9 @@ export const CanvasProvider = ({ children }) => {
   }
 
   const saveCanvas = () => {
-    
+    const canvas = canvasRef.current
+    const dataUrl = canvas.toDataUrl()
+    console.log(dataUrl)
   }
 
 
