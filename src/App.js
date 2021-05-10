@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 // import './App.css';
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import CollectionShow from "./components/CollectionShow";
 import CollectionsIndex from "./components/CollectionsIndex";
@@ -15,6 +15,26 @@ import NavMenu from "./components/NavMenu";
 function App() {
 
   const [notLoggedIn, setLoggedIn] = useState(false)
+  const [drawings, setDrawings] = useState([])
+  const [collections, setCollections] = useState([])
+
+  useEffect(fetchDrawings, [])
+  
+  function fetchDrawings() {
+    fetch("http://localhost:3000/pictures")
+    .then(res => res.json())
+    .then(setDrawings)
+  }
+
+  useEffect(fetchCollections, [])
+  
+  function fetchCollections() {
+    fetch("http://localhost:3000/collections")
+    .then(res => res.json())
+    .then(setCollections)
+  }
+  
+  
 
   return (
     <div className="App">
@@ -39,7 +59,7 @@ function App() {
               <DrawingShow />
             </Route>
             <Route exact path="/">
-              <Home />
+              <Home pictures={drawings} />
             </Route>
           </Switch>
         </Router>
