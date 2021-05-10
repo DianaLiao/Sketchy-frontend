@@ -34,7 +34,6 @@ function App() {
     .then(setCollections)
   }
   
-  
 
   return (
     <div className="App">

@@ -1,7 +1,7 @@
-
+import PictureCard from "./PictureCard"
 
 function PublicBar({pictures}) {
-let publicPictureElements = pictures.map( picture => <img src={picture.test_image} alt={picture.name} /> )
+let publicPictureElements = pictures.map( picture => <PictureCard key={picture.id} {...picture}/> )
 
     return (
         <div>

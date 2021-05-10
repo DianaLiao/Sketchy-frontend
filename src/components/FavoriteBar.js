@@ -1,7 +1,8 @@
+import PictureCard from "./PictureCard"
 
 function FavoriteBar({pictures}) {
 
-let favoritePictureElements = pictures.map( picture => <img src={picture.test_image} alt={picture.name} /> )
+let favoritePictureElements = pictures.map( picture => <PictureCard key={picture.id} {...picture} /> )
 
     return (
         <div>
