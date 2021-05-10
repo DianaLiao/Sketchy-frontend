@@ -55,7 +55,7 @@ function App() {
               <CollectionShow />
             </Route>
             <Route path="/pictures/:id">
-              <PictureShow />
+              <PictureShow drawings={drawings}/>
             </Route>
             <Route exact path="/">
               <Home pictures={drawings} />

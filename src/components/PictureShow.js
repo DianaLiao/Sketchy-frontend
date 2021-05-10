@@ -1,9 +1,23 @@
+import { useParams } from "react-router-dom"
 
+function PictureShow({drawings}){
+  
+  const params = useParams()
+  const selectedDrawing = drawings.find( drawing => {
+    return drawing.id === parseInt(params.id)
+  })
 
-function PictureShow(){
+  const {name, favorite, description, image_url} = selectedDrawing
 
   return (
-    <div>I'm such a detailed page for a drawing</div>
+    <div>
+      <h1>{name}</h1>
+      <img src={image_url} alt={name} />
+      <h3>Description:</h3>
+      <p>
+        {description}
+      </p>
+    </div>
   )
 }
 
