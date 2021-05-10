@@ -11,7 +11,6 @@ import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";
 // import MainContainer from "./components/MainContainer";
 import NavMenu from "./components/NavMenu";
-import { CanvasProvider } from "./components/CanvasContext"
 
 function App() {
 
@@ -48,9 +47,7 @@ function App() {
 
           <Switch>  
             <Route path="/new-drawing">
-              <CanvasProvider>
                 <CreateDrawing />
-              </CanvasProvider>
             </Route>
             <Route exact path="/collections">
               <CollectionsIndex />
