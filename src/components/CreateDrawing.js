@@ -1,20 +1,20 @@
 import React, { useEffect, useRef } from "react"
 import { useCanvas } from "./CanvasContext"
-import { createCanvas } from "canvas"
+import DrawingApp from "./DrawingApp"
 
 function CreateDrawing(){
 
-  const {
-    canvasRef,
-    prepareCanvas,
-    startDrawing,
-    finishDrawing,
-    draw
-  } = useCanvas();
+  // const {
+  //   canvasRef,
+  //   prepareCanvas,
+  //   startDrawing,
+  //   finishDrawing,
+  //   draw
+  // } = useCanvas();
 
-  useEffect(() => {
-    prepareCanvas();
-  }, []);
+  // useEffect(() => {
+  //   prepareCanvas();
+  // }, []);
 
 
   // let ref = useRef()
@@ -32,17 +32,7 @@ function CreateDrawing(){
 
   return (
     <>
-    <canvas 
-    width="400px"
-    height="400px"
-    // ref={ref}
-    onMouseDown={startDrawing}
-    onMouseUp={finishDrawing}
-    onMouseMove={draw}
-    ref={canvasRef}
-    >
-      box for drawing
-    </canvas>
+    <DrawingApp />
     <button>
       Save?
     </button>

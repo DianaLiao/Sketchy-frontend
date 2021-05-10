@@ -9,6 +9,8 @@ export const CanvasProvider = ({ children }) => {
 
   const prepareCanvas = () => {
     const canvas = canvasRef.current
+    canvas.width = 400
+    canvas.height = 400
     // canvas.width = window.innerWidth * 2;
     // canvas.height = window.innerHeight * 2;
     // canvas.style.width = `${window.innerWidth}px`;
@@ -48,6 +50,10 @@ export const CanvasProvider = ({ children }) => {
     const context = canvas.getContext("2d")
     context.fillStyle = "white"
     context.fillRect(0, 0, canvas.width, canvas.height)
+  }
+
+  const saveCanvas = () => {
+    
   }
 
 
