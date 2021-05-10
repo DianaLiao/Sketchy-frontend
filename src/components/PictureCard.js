@@ -2,8 +2,10 @@ import { useHistory } from "react-router-dom";
 
 function PictureCard(picture) {
 
+    const history = useHistory()
+
     function sendToPictureShowPage() {
-        // history.push(`/pictures/${picture.id}`)
+        history.push(`/pictures/${picture.id}`)
     }
 
     return(
