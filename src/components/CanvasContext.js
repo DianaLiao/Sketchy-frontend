@@ -4,18 +4,20 @@ const CanvasContext = React.createContext();
 
 export const CanvasProvider = ({ children }) => {
   const [isDrawing, setIsDrawing] = useState(false)
-  const canvasRef = useRef(null);
-  const contextRef = useRef(null);
+  let canvasRef = useRef(null);
+  let contextRef = useRef(null);
 
   const prepareCanvas = () => {
     const canvas = canvasRef.current
+    canvas.width = 400
+    canvas.height = 400
     // canvas.width = window.innerWidth * 2;
     // canvas.height = window.innerHeight * 2;
     // canvas.style.width = `${window.innerWidth}px`;
     // canvas.style.height = `${window.innerHeight}px`;
 
     const context = canvas.getContext("2d")
-    context.scale(2, 2);
+    // context.scale(2, 2);
     context.lineCap = "round";
     context.strokeStyle = "black";
     context.lineWidth = 5;
@@ -50,6 +52,14 @@ export const CanvasProvider = ({ children }) => {
     context.fillRect(0, 0, canvas.width, canvas.height)
   }
 
+  const saveCanvas = () => {
+    const canvas = canvasRef.current
+    const dataUrl = canvas.toDataUrl()
+    console.log(dataUrl)
+  }
+
+
+
   return (
     <CanvasContext.Provider
       value={{
@@ -59,7 +69,7 @@ export const CanvasProvider = ({ children }) => {
         startDrawing,
         finishDrawing,
         clearCanvas,
-        draw,
+        draw
       }}
     >
       {children}

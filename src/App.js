@@ -46,7 +46,7 @@ function App() {
 
           <Switch>  
             <Route path="/new-drawing">
-              <CreateDrawing />
+                <CreateDrawing />
             </Route>
             <Route exact path="/collections">
               <CollectionsIndex />
