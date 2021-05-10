@@ -2,7 +2,7 @@
 function Header(){
   return(
     <header>
-      I am a header
+      <h1>*~ i'M sO sKeTcHy ~*</h1>
     </header>
   )
 }
