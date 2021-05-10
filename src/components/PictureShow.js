@@ -1,10 +1,10 @@
 
 
-function DrawingShow(){
+function PictureShow(){
 
   return (
     <div>I'm such a detailed page for a drawing</div>
   )
 }
 
-export default DrawingShow
+export default PictureShow

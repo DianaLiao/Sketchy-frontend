@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import CollectionShow from "./components/CollectionShow";
 import CollectionsIndex from "./components/CollectionsIndex";
 import CreateDrawing from "./components/CreateDrawing";
-import DrawingShow from "./components/DrawingShow";
+import PictureShow from "./components/PictureShow";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";
@@ -54,8 +54,8 @@ function App() {
             <Route path="/collections/:id">
               <CollectionShow />
             </Route>
-            <Route path="/drawings/:id">
-              <DrawingShow />
+            <Route path="/pictures/:id">
+              <PictureShow />
             </Route>
             <Route exact path="/">
               <Home pictures={drawings} />

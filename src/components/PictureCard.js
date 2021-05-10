@@ -10,7 +10,7 @@ function PictureCard(picture) {
 
     return(
         <>
-        <img onClick={sendToPictureShowPage} src={picture.test_image} alt={picture.name} />
+        <img onClick={sendToPictureShowPage} src={picture.image_url} alt={picture.name} />
         </>
     )
 }
