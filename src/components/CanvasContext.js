@@ -54,7 +54,7 @@ export const CanvasProvider = ({ children }) => {
 
   const saveCanvas = () => {
     const canvas = canvasRef.current
-    const dataUrl = canvas.toDataUrl()
+    const dataUrl = canvas.toDataURL()
     console.log(dataUrl)
   }
 
@@ -69,7 +69,8 @@ export const CanvasProvider = ({ children }) => {
         startDrawing,
         finishDrawing,
         clearCanvas,
-        draw
+        draw,
+        saveCanvas
       }}
     >
       {children}

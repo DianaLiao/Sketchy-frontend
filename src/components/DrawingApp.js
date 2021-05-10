@@ -1,6 +1,5 @@
 import { useCanvas } from "./CanvasContext"
 import { useEffect } from "react"
-// import { createCanvas } from "canvas"
 
 
 function DrawingApp() {
