@@ -28,3 +28,7 @@ nav a.active {
 main {
   margin: 10px;
 }
+
+canvas {
+  border: 1px solid black;
+}
