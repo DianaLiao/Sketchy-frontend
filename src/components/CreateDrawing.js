@@ -1,25 +1,27 @@
-import { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 import { useCanvas } from "./CanvasContext"
+import { createCanvas } from "canvas"
 
 function CreateDrawing(){
 
+  const {
+    canvasRef,
+    prepareCanvas,
+    startDrawing,
+    finishDrawing,
+    draw
+  } = useCanvas();
 
-  // const {
-  //   canvasRef,
-  //   prepareCanvas,
-  //   startDrawing,
-  //   finishDrawing,
-  //   draw,
-  // } = useCanvas();
+  useEffect(() => {
+    prepareCanvas();
+  }, []);
+
+
+  // let ref = useRef()
 
   // useEffect(() => {
-  //   prepareCanvas();
-  // }, []);
-
-
-  // useEffect(() => {
-  //   let canvas = canvasRef.current;
-  //   let context = canvas.getContext('2d');
+  //   let canvas = ref.current
+  //   let context = canvas.getContext('2d')
 
   //   context.fillStyle = 'rgb(200, 0, 0)';
   //   context.fillRect(10, 10, 50, 50);
@@ -29,16 +31,22 @@ function CreateDrawing(){
   //   });
 
   return (
+    <>
     <canvas 
     width="400px"
     height="400px"
-    // onMouseDown={startDrawing}
-    // onMouseUp={finishDrawing}
-    // onMouseMove={draw}
-    // ref={canvasRef}
+    // ref={ref}
+    onMouseDown={startDrawing}
+    onMouseUp={finishDrawing}
+    onMouseMove={draw}
+    ref={canvasRef}
     >
       box for drawing
     </canvas>
+    <button>
+      Save?
+    </button>
+    </>
   )
 }
 

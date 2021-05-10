@@ -15,7 +15,7 @@ export const CanvasProvider = ({ children }) => {
     // canvas.style.height = `${window.innerHeight}px`;
 
     const context = canvas.getContext("2d")
-    context.scale(2, 2);
+    // context.scale(2, 2);
     context.lineCap = "round";
     context.strokeStyle = "black";
     context.lineWidth = 5;
@@ -50,6 +50,8 @@ export const CanvasProvider = ({ children }) => {
     context.fillRect(0, 0, canvas.width, canvas.height)
   }
 
+
+
   return (
     <CanvasContext.Provider
       value={{
@@ -59,7 +61,7 @@ export const CanvasProvider = ({ children }) => {
         startDrawing,
         finishDrawing,
         clearCanvas,
-        draw,
+        draw
       }}
     >
       {children}
