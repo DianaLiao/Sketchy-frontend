@@ -14,13 +14,40 @@ import NavMenu from "./components/NavMenu";
 
 function App() {
 
+  const userId = localStorage.user
+
   const [user, setUser] = useState({name:""})
-  const [notLoggedIn, setLoggedIn] = useState(localStorage.user === "" ? true : false)
+  const [notLoggedIn, setLoggedIn] = useState(userId ==="" ? true : false)
   const [drawings, setDrawings] = useState([])
   const [collections, setCollections] = useState([])
   
+  
+  useEffect(fetchUser, [userId])
+  useEffect(fetchDrawings, [])
+  useEffect(fetchCollections, [])
+  
+  function fetchDrawings() {
+    fetch("http://localhost:3000/pictures")
+    .then(res => res.json())
+    .then(setDrawings)
+  }
+  
+  function fetchCollections() {
+    fetch(`http://localhost:3000/users/${user.id}/collections`)
+    .then(res => res.json())
+    .then(data => {
+      console.log("collections", data)
+      setCollections(data)
+    })
+  }
+
+  function fetchUser(){
+    fetch(`http://localhost:3000/users/${userId}`)
+      .then(resp=>resp.json())
+      .then(setUser)
+  }
+  
   function updatePicture(formData, id) {
-    
      fetch(`http://localhost:3000/pictures/${id}`,{
        method: "PATCH",
        headers: {
@@ -31,24 +58,7 @@ function App() {
      .then(res => res.json())
      .then(console.log)
   }
-
-  useEffect(fetchDrawings, [])
   
-  function fetchDrawings() {
-    fetch("http://localhost:3000/pictures")
-    .then(res => res.json())
-    .then(setDrawings)
-  }
-
-  useEffect(fetchCollections, [])
-  
-  function fetchCollections() {
-    fetch("http://localhost:3000/collections")
-    .then(res => res.json())
-    .then(setCollections)
-  }
-  
-
   return (
     <div className="App">
       <Header />
@@ -60,10 +70,10 @@ function App() {
 
           <Switch>  
             <Route path="/new-drawing">
-                <CreateDrawing />
+                <CreateDrawing collections={collections} user={user}/>
             </Route>
             <Route exact path="/collections">
-              <CollectionsIndex />
+              <CollectionsIndex collections={collections}/>
             </Route>
             <Route path="/collections/:id">
               <CollectionShow updatePicture={updatePicture} pictures={drawings} />

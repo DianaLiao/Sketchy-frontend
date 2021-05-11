@@ -4,7 +4,7 @@ function FavoriteBar({pictures}) {
 
 // let favoritePictureElements = pictures.map( picture => <PictureCard key={picture.id} {...picture} /> )
 
-    const favPicElements = pictures.map(pic => <img src={pic.image_url} alt={pic.name}></img>)
+    const favPicElements = pictures.map(pic => <img src={pic.image_url} alt={pic.name} key={pic.id}></img>)
     return (
         <>
             <h1>FAVORITE BAR</h1>

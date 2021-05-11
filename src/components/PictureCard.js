@@ -12,7 +12,7 @@ function PictureCard(picture) {
     const {name, image_url, description, favorite, created_at} = picture
 
     return(
-        <div onClick={sendToPictureShowPage} class="picture-card">
+        <div onClick={sendToPictureShowPage} className="picture-card">
             <Card>
                 <Image src={image_url} alt={name}/>
                 <Card.Content>

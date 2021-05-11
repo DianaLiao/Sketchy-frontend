@@ -3,8 +3,6 @@ import PictureCard from "./PictureCard"
 
 function CollectionShow({pictures}){
 
-  console.log(pictures)
-
   const cardList = pictures.map(picture => {
     return <PictureCard key={picture.id} {...picture}/>
   })

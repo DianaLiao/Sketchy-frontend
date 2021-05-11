@@ -1,12 +1,14 @@
 import {useCanvas} from "./CanvasContext"
 import {useState} from "react"
 
-function SaveDrawingForm() {
+function SaveDrawingForm({collections, user}) {
 
   const {saveCanvas} = useCanvas()
   
-  const blankForm = {name:"", description:"", public:false, image_url:""}
+  const blankForm = {name:"", description:"", public:false, image_url:"", collection_id:""}
   const [formData, setFormData] = useState(blankForm)
+
+  const userId = user.id || localStorage.user
 
   function handleFormChange(event){
     const property = event.target.name
@@ -17,12 +19,13 @@ function SaveDrawingForm() {
     }
 
     setFormData({...formData, [property]:value})
-
   }
 
   function handleFormSubmit(event){
     event.preventDefault()
-    setFormData({...formData, image_url:saveCanvas(), user_id:localStorage.user})
+    setFormData({...formData, image_url:saveCanvas(), user_id:userId})
+
+    console.log(formData)
 
     const fetchObj = {
       method: "POST",
@@ -34,9 +37,15 @@ function SaveDrawingForm() {
 
     fetch("http://localhost:3000/pictures", fetchObj)
       .then(resp => resp.json())
-      .then(console.log)
+      .then(data => {
+        console.log(data)
+      })
 
   }
+
+  const collectionOptions = collections.map(collection => {
+    return <option value={collection.id}>{collection.name}</option>
+  })
   
   return (
     <form onSubmit={handleFormSubmit}>
@@ -44,6 +53,9 @@ function SaveDrawingForm() {
       <input onChange={handleFormChange} type="text" name="name" value={formData.name}></input><br></br>
       <label for="description">Description:</label>
       <input onChange={handleFormChange} type="text" name="description" value={formData.description}></input><br></br>
+      <select onChange={handleFormChange} name="collection_id" id="collection">
+        {collectionOptions}
+      </select>
       <label for="isPublic">Make public?</label>
       <input onChange={handleFormChange} type="checkbox" name="isPublic" value={formData.isPublic}></input>
       <input type="submit" value="Save?"></input>

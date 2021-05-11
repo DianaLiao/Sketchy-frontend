@@ -4,7 +4,7 @@ function PublicBar({pictures}) {
 
 // let publicPictureElements = pictures.map( picture => <PictureCard key={picture.id} {...picture}/> )
 
-    const publicPicElements = pictures.map(pic => <img src={pic.image_url} alt={pic.name}></img>)
+    const publicPicElements = pictures.map(pic => <img src={pic.image_url} alt={pic.name} key={pic.id}></img>)
 
     return (
         <>

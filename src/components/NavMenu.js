@@ -16,7 +16,7 @@ function NavMenu({setLoggedIn}) {
           Create New Drawing
         </NavLink>
         <NavLink className="" to="/collections">
-          View Past Collections
+          View Your Collections
         </NavLink>
         <span onClick={logOut}>
           Logout

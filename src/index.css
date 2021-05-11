@@ -40,7 +40,7 @@ div.collection{
 
 }
 
-div.picture-card{
+div.picture-card, div.collection-card{
   margin:10px;
 }
 

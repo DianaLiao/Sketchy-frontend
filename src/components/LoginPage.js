@@ -84,6 +84,7 @@ function LoginPage({setLoggedIn, setUser, notLoggedIn}){
       {errors !== "" && errors.map(error => {
         return <p>{error}</p>
       })}
+      <hr></hr>
       <h3>New User Sign Up</h3>
       <form onSubmit={handleNewUserSubmit}>
         <label for="name">Name:</label>
