@@ -1,14 +1,23 @@
 import { useParams } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 function PictureShow({updatePicture, drawings}){
   
-  const params = useParams()
-  const selectedDrawing = drawings.find( drawing => {
-    return drawing.id === parseInt(params.id)
-  })
+  const {id} = useParams()
+  // const selectedDrawing = drawings.find( drawing => {
+  //   return drawing.id === parseInt(params.id)
+  // })
 
-  const {name, favorite, description, image_url, isPublic} = selectedDrawing
+  const [picture, setPicture] = useState({})
+  console.log(id)
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/pictures/${id}`)
+      .then(resp => resp.json())
+      .then(data => setPicture(data))
+  }, [id])
+
+  const {name, favorite, description, image_url, isPublic} = picture
 
   const [updatePictureFormData, setUpdatePictureFormData] = useState({
     name: name,
@@ -31,7 +40,7 @@ function PictureShow({updatePicture, drawings}){
 
     function handleFormSubmit(event) {
       event.preventDefault()
-      updatePicture(updatePictureFormData, selectedDrawing.id)
+      updatePicture(updatePictureFormData, id)
     }
 
 
@@ -47,7 +56,7 @@ function PictureShow({updatePicture, drawings}){
       <h3>Update This Drawing</h3>
       <form onSubmit={handleFormSubmit}>
         <input onChange={handleFormChange} type="text" name="name" placeholder={name} value={updatePictureFormData.name}></input><br></br>
-        <textarea onChange={handleFormChange} name="description" placeholder={description} rows="15" cols="40"> value={updatePictureFormData.description}</textarea><br></br>
+        <textarea onChange={handleFormChange} name="description" placeholder={description} rows="15" cols="40" value={updatePictureFormData.description}></textarea><br></br>
         <input onChange={handleFormChange} id="isPublic" type="checkbox" name="isPublic" value={updatePictureFormData.isPublic}></input>
         <label for="isPublic">Mark as public?</label><br></br>
         <input type="submit" value="Update This Drawing"></input>

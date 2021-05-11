@@ -17,7 +17,7 @@ function PictureCard(picture) {
                 <Image src={image_url} alt={name}/>
                 <Card.Content>
                     <Card.Header>{name}</Card.Header>
-                    <Card.Meta>Created <date>{created_at.slice(0,10)}</date></Card.Meta>
+                    <Card.Meta>Created {created_at.slice(0,10)}</Card.Meta>
                 </Card.Content>
                 <Card.Content extra>
                     <div className="ui three buttons">
