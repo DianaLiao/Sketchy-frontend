@@ -44,8 +44,8 @@ function SaveDrawingForm() {
       <input onChange={handleFormChange} type="text" name="name" value={formData.name}></input><br></br>
       <label for="description">Description:</label>
       <input onChange={handleFormChange} type="text" name="description" value={formData.description}></input><br></br>
-      <label for="public">Make public?</label>
-      <input onChange={handleFormChange} type="checkbox" name="public" value={formData.public}></input>
+      <label for="isPublic">Make public?</label>
+      <input onChange={handleFormChange} type="checkbox" name="isPublic" value={formData.isPublic}></input>
       <input type="submit" value="Save?"></input>
     </form>
 

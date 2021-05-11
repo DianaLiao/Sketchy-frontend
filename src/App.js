@@ -17,6 +17,19 @@ function App() {
   const [notLoggedIn, setLoggedIn] = useState(false)
   const [drawings, setDrawings] = useState([])
   const [collections, setCollections] = useState([])
+  
+  function updatePicture(formData, id) {
+    
+     fetch(`http://localhost:3000/pictures/${id}`,{
+       method: "PATCH",
+       headers: {
+         "Content-Type": "application/json"
+       },
+       body: JSON.stringify(formData)
+     })
+     .then(res => res.json())
+     .then(console.log)
+  }
 
   useEffect(fetchDrawings, [])
   
@@ -52,10 +65,10 @@ function App() {
               <CollectionsIndex />
             </Route>
             <Route path="/collections/:id">
-              <CollectionShow pictures={drawings} />
+              <CollectionShow updatePicture={updatePicture} pictures={drawings} />
             </Route>
             <Route path="/pictures/:id">
-              <PictureShow drawings={drawings}/>
+              <PictureShow updatePicture={updatePicture} drawings={drawings}/>
             </Route>
             <Route exact path="/">
               <Home pictures={drawings} />
