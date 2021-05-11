@@ -15,7 +15,7 @@ import NavMenu from "./components/NavMenu";
 function App() {
 
   const [user, setUser] = useState({name:""})
-  const [notLoggedIn, setLoggedIn] = useState(true)
+  const [notLoggedIn, setLoggedIn] = useState(localStorage.user === "" ? true : false)
   const [drawings, setDrawings] = useState([])
   const [collections, setCollections] = useState([])
   

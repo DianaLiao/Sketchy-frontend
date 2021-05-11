@@ -22,7 +22,7 @@ function SaveDrawingForm() {
 
   function handleFormSubmit(event){
     event.preventDefault()
-    setFormData({...formData, image_url:saveCanvas()})
+    setFormData({...formData, image_url:saveCanvas(), user_id:localStorage.user})
 
     const fetchObj = {
       method: "POST",
