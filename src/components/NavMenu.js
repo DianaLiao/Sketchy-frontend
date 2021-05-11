@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom"
 
-function NavMenu() {
+function NavMenu({setLoggedIn}) {
+
+  function logOut(){
+    setLoggedIn(true)
+    localStorage.setItem("user", "")
+  }
 
   return(
     <nav>
@@ -13,6 +18,9 @@ function NavMenu() {
         <NavLink className="" to="/collections">
           View Past Collections
         </NavLink>
+        <span onClick={logOut}>
+          Logout
+        </span>
     </nav>
   )
 }

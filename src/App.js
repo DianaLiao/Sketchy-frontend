@@ -14,7 +14,8 @@ import NavMenu from "./components/NavMenu";
 
 function App() {
 
-  const [notLoggedIn, setLoggedIn] = useState(false)
+  const [user, setUser] = useState({name:""})
+  const [notLoggedIn, setLoggedIn] = useState(true)
   const [drawings, setDrawings] = useState([])
   const [collections, setCollections] = useState([])
   
@@ -52,10 +53,10 @@ function App() {
     <div className="App">
       <Header />
       <main>
-        {notLoggedIn ? <LoginPage /> : 
+        {notLoggedIn ? <LoginPage setUser={setUser} setLoggedIn={setLoggedIn} notLoggedIn={notLoggedIn} /> : 
         <>
         <Router>
-          <NavMenu />  
+          <NavMenu setLoggedIn={setLoggedIn}/>  
 
           <Switch>  
             <Route path="/new-drawing">
@@ -71,7 +72,7 @@ function App() {
               <PictureShow updatePicture={updatePicture} drawings={drawings}/>
             </Route>
             <Route exact path="/">
-              <Home pictures={drawings} />
+              <Home pictures={drawings} user={user} />
             </Route>
           </Switch>
         </Router>
