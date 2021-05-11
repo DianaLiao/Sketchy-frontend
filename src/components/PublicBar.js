@@ -1,15 +1,18 @@
 import PictureCard from "./PictureCard"
 
 function PublicBar({pictures}) {
-let publicPictureElements = pictures.map( picture => <PictureCard key={picture.id} {...picture}/> )
+
+// let publicPictureElements = pictures.map( picture => <PictureCard key={picture.id} {...picture}/> )
+
+    const publicPicElements = pictures.map(pic => <img src={pic.image_url} alt={pic.name}></img>)
 
     return (
-        <div>
+        <>
             <h1>PUBLIC BAR</h1>
-            <ul>
-            {publicPictureElements}
-            </ul>
-        </div>
+            <div className="display-bar">
+                {publicPicElements}
+            </div>
+        </>
     )
 }
 

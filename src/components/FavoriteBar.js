@@ -2,15 +2,16 @@ import PictureCard from "./PictureCard"
 
 function FavoriteBar({pictures}) {
 
-let favoritePictureElements = pictures.map( picture => <PictureCard key={picture.id} {...picture} /> )
+// let favoritePictureElements = pictures.map( picture => <PictureCard key={picture.id} {...picture} /> )
 
+    const favPicElements = pictures.map(pic => <img src={pic.image_url} alt={pic.name}></img>)
     return (
-        <div>
+        <>
             <h1>FAVORITE BAR</h1>
-            <ul>
-            {favoritePictureElements}
-            </ul>
-        </div>
+            <div className="display-bar">
+                {favPicElements}
+            </div>
+        </>
     )
 }
 

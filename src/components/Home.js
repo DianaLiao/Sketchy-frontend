@@ -1,8 +1,17 @@
 import FavoriteBar from "./FavoriteBar"
 import PublicBar from "./PublicBar"
+import { useState, useEffect } from "react"
 
 function Home({pictures, user}){
 
+  const [publicPics, setPublicPics] = useState([])
+
+
+  useEffect(() => {
+    fetch("http://localhost:3000/pictures/public")
+      .then(resp => resp.json())
+      .then(setPublicPics)
+  }, [])
 
   return (
     <div className="home-view">
@@ -13,7 +22,7 @@ function Home({pictures, user}){
 
       <FavoriteBar pictures={pictures} />
       <br></br>
-      <PublicBar pictures={pictures} />
+      <PublicBar pictures={publicPics} />
     
       
     </div>

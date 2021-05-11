@@ -65,7 +65,7 @@ function LoginPage({setLoggedIn, setUser, notLoggedIn}){
   function logInUser(userData){
     console.log(userData)
     setErrors("")
-    // setUser(userData)
+    setUser(userData)
     setLoggedIn(false)
     // history.push("/")
     localStorage.setItem("user", userData.id)

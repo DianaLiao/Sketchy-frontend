@@ -44,3 +44,12 @@ div.picture-card{
   margin:10px;
 }
 
+div.display-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+}
+
+div.display-bar img {
+  width: 150px;
+}
