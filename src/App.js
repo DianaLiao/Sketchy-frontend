@@ -52,7 +52,7 @@ function App() {
               <CollectionsIndex />
             </Route>
             <Route path="/collections/:id">
-              <CollectionShow />
+              <CollectionShow pictures={drawings} />
             </Route>
             <Route path="/pictures/:id">
               <PictureShow drawings={drawings}/>

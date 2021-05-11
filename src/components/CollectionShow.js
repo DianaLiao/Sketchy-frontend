@@ -1,9 +1,20 @@
+import PictureCard from "./PictureCard"
 
 
-function CollectionShow(){
+function CollectionShow({pictures}){
 
+  console.log(pictures)
+
+  const cardList = pictures.map(picture => {
+    return <PictureCard key={picture.id} {...picture}/>
+  })
   return (
-    <div>I'm such a detailed page for a collection</div>
+    <>
+    <h5>Name and description will eventually go here</h5>
+    <div className="collection">
+      {cardList}
+    </div>
+    </>
   )
 }
 

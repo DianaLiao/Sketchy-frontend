@@ -2,7 +2,10 @@
 function CollectionsIndex(){
 
   return (
-    <div>Collectionssss</div>
+    <div className="collection">
+      Collectionssss
+
+    </div>
   )
 }
 

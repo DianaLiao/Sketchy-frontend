@@ -32,3 +32,15 @@ main {
 canvas {
   border: 1px solid black;
 }
+
+div.collection{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+
+div.picture-card{
+  margin:10px;
+}
+
