@@ -5,7 +5,7 @@ function SaveDrawingForm({collections, user, setCollections}) {
 
   const {saveCanvas} = useCanvas()
   
-  const blankForm = {name:"", description:"", public:false, image_url:"", collection_id:""}
+  const blankForm = {name:"", description:"", public:false, image_url:"", collection_id:"", user_id:user.id}
   const [formData, setFormData] = useState(blankForm)
 
   const userId = user.id 
@@ -14,17 +14,22 @@ function SaveDrawingForm({collections, user, setCollections}) {
     const property = event.target.name
     let value = event.target.value
 
+    const image_url = saveCanvas()
+
     if (event.target.type === "checkbox") {
       value = event.target.checked;
     }
 
-    setFormData({...formData, [property]:value})
+    setFormData({...formData, [property]:value, image_url})
   }
 
   function handleFormSubmit(event){
     event.preventDefault()
-    setFormData({...formData, image_url:saveCanvas(), user_id:userId})
-
+    const image_url = saveCanvas()
+  
+    
+    setFormData(Object.assign({}, formData, {image_url:image_url}))
+    
     console.log(formData)
 
     const fetchObj = {
@@ -53,13 +58,13 @@ function SaveDrawingForm({collections, user, setCollections}) {
         fetch("http://localhost:3000/picture_collections", collectionPostObj)
         .then(res => res.json())
         .then(() =>{
-          let collectionsCopy = [...collections]
-        const specificCollection = collectionsCopy.find( collection => collection.id == event.target.collection_id.value)
+        //   let collectionsCopy = [...collections]
+        // const specificCollection = collectionsCopy.find( collection => collection.id == event.target.collection_id.value)
       
-        specificCollection.pictures.push(newPicture)
-        let filteredCollection = collectionsCopy.filter( collection => collection.id != event.target.collection_id.value)
-        filteredCollection.push(specificCollection)
-        setCollections(filteredCollection)
+        // specificCollection.pictures.push(newPicture)
+        // let filteredCollection = collectionsCopy.filter( collection => collection.id != event.target.collection_id.value)
+        // filteredCollection.push(specificCollection)
+        // setCollections(filteredCollection)
 
         
         })
