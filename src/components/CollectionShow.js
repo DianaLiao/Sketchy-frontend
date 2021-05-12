@@ -14,7 +14,9 @@ function CollectionShow({collections, updatePicture}){
 
   return (
     <>
-    <h5>Name and description will eventually go here</h5>
+    <h2>{selectedCollection.name}</h2>
+    <h3>Description: {selectedCollection.description}</h3>
+    <p>Click The Drawing To See More Details!</p>
     <div className="collection">
       {cardList}
     </div>
