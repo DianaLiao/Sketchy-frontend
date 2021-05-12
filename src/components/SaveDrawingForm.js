@@ -1,5 +1,6 @@
 import {useCanvas} from "./CanvasContext"
 import {useState} from "react"
+import {useHistory} from "react-router-dom"
 
 function SaveDrawingForm({collections, user, setCollections}) {
 
@@ -9,6 +10,8 @@ function SaveDrawingForm({collections, user, setCollections}) {
   const [formData, setFormData] = useState(blankForm)
 
   const userId = user.id 
+
+  const history = useHistory()
 
   function handleFormChange(event){
     const property = event.target.name
@@ -26,7 +29,7 @@ function SaveDrawingForm({collections, user, setCollections}) {
   function handleFormSubmit(event){
     event.preventDefault()
     const image_url = saveCanvas()
-  
+    const collection_id = event.target.collection_id.value
     
     setFormData(Object.assign({}, formData, {image_url:image_url}))
     
@@ -51,26 +54,25 @@ function SaveDrawingForm({collections, user, setCollections}) {
           headers: {
             "Content-Type":"application/json"
           },
-          body: JSON.stringify({collection_id: event.target.collection_id.value, picture_id: newPicture.id })
+          body: JSON.stringify({collection_id, picture_id: newPicture.id })
         }
 
 
         fetch("http://localhost:3000/picture_collections", collectionPostObj)
         .then(res => res.json())
         .then(() =>{
-        //   let collectionsCopy = [...collections]
-        // const specificCollection = collectionsCopy.find( collection => collection.id == event.target.collection_id.value)
-      
-        // specificCollection.pictures.push(newPicture)
-        // let filteredCollection = collectionsCopy.filter( collection => collection.id != event.target.collection_id.value)
-        // filteredCollection.push(specificCollection)
-        // setCollections(filteredCollection)
 
+          const collectionsCopy = [...collections]
+          const selectedId = collectionsCopy.findIndex(collection => collection.id == collection_id )
+          const updatedCollection = collectionsCopy[selectedId]
+          updatedCollection.pictures.push(newPicture)
+          collectionsCopy[selectedId] = updatedCollection
+          setCollections(collectionsCopy)
         
         })
       })
 
-      
+      history.push(`/collections/${collection_id}`)
     
   }
 
