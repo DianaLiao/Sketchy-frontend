@@ -45,7 +45,7 @@ function PictureShow({updatePicture, drawings}){
 
 
   return (
-    <div>
+    <div className="show-picture">
       <h1>{name}</h1>
       <img src={image_url} alt={name} />
       <h3>Description:</h3>

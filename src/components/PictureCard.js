@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { Button, Card, Icon, Image } from "semantic-ui-react"
 
-function PictureCard(picture) {
+function PictureCard({picture, updatePicture}) {
 
     const history = useHistory()
 
@@ -9,7 +9,7 @@ function PictureCard(picture) {
         history.push(`/pictures/${picture.id}`)
     }
 
-    const {name, image_url, description, favorite, created_at} = picture
+    const {name, image_url, description, favorite, created_at, id} = picture
 
     return(
         <div onClick={sendToPictureShowPage} className="picture-card">
@@ -21,9 +21,9 @@ function PictureCard(picture) {
                 </Card.Content>
                 <Card.Content extra>
                     <div className="ui three buttons">
-                    <Button animated="fade" basic color="green">
+                    <Button animated="fade" basic color="green" onClick={()=>updatePicture({favorite: !favorite}, id)}>
                         <Button.Content visible>⭐️</Button.Content>
-                        <Button.Content hidden>Favorite?</Button.Content>
+                        <Button.Content hidden>{favorite ? "Remove from Favorites?" : "Favorite?"}</Button.Content>
                     </Button>
                     <Button animated="fade" basic color="yellow">
                         <Button.Content visible>👀</Button.Content>

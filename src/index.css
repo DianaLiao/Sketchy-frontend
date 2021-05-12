@@ -53,3 +53,7 @@ div.display-bar {
 div.display-bar img {
   width: 150px;
 }
+
+div.show-picture img {
+  max-width: 400px;
+}

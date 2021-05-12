@@ -14,7 +14,7 @@ import NavMenu from "./components/NavMenu";
 
 function App() {
 
-  const userId = localStorage.user
+  let userId = localStorage.user
 
   const [user, setUser] = useState({name:""})
   const [notLoggedIn, setLoggedIn] = useState(userId ==="" ? true : false)
@@ -27,16 +27,18 @@ function App() {
   useEffect(fetchCollections, [])
   
   function fetchDrawings() {
-    fetch("http://localhost:3000/pictures")
+    fetch(`http://localhost:3000/users/${userId}/pictures`)
     .then(res => res.json())
     .then(setDrawings)
   }
   
   function fetchCollections() {
-    fetch(`http://localhost:3000/users/${user.id}/collections`)
+    fetch(`http://localhost:3000/users/${userId}/collections`)
     .then(res => res.json())
     .then(data => {
       console.log("collections", data)
+      console.log("userID", userId)
+      console.log("user", user)
       setCollections(data)
     })
   }
@@ -44,7 +46,9 @@ function App() {
   function fetchUser(){
     fetch(`http://localhost:3000/users/${userId}`)
       .then(resp=>resp.json())
-      .then(setUser)
+      .then(user => {
+        setUser(user)
+      })
   }
   
   function updatePicture(formData, id) {

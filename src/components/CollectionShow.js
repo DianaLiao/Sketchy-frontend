@@ -1,10 +1,10 @@
 import PictureCard from "./PictureCard"
 
 
-function CollectionShow({pictures}){
+function CollectionShow({pictures, updatePicture}){
 
   const cardList = pictures.map(picture => {
-    return <PictureCard key={picture.id} {...picture}/>
+    return <PictureCard key={picture.id} picture={picture} updatePicture={updatePicture}/>
   })
   return (
     <>
