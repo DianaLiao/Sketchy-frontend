@@ -57,3 +57,19 @@ div.display-bar img {
 div.show-picture img {
   max-width: 400px;
 }
+
+div.drawing-app {
+  display: flex;
+  justify-content: center;
+}
+
+aside.toolbar {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  margin-left: 25px;
+}
+
+aside.toolbar input{
+  overflow: auto;
+}

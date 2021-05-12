@@ -4,6 +4,8 @@ const CanvasContext = React.createContext();
 
 export const CanvasProvider = ({ children }) => {
   const [isDrawing, setIsDrawing] = useState(false)
+  const [currentColor, setColor] = useState("#000000")
+  const [currentWidth, setWidth] = useState(5)
   let canvasRef = useRef(null);
   let contextRef = useRef(null);
 
@@ -11,23 +13,29 @@ export const CanvasProvider = ({ children }) => {
     const canvas = canvasRef.current
     canvas.width = 400
     canvas.height = 400
-    // canvas.width = window.innerWidth * 2;
-    // canvas.height = window.innerHeight * 2;
-    // canvas.style.width = `${window.innerWidth}px`;
-    // canvas.style.height = `${window.innerHeight}px`;
 
     const context = canvas.getContext("2d")
-    // context.scale(2, 2);
+    
     context.lineCap = "round";
-    context.strokeStyle = "black";
-    context.lineWidth = 5;
+    context.strokeStyle = currentColor;
+    context.lineWidth = currentWidth;
     contextRef.current = context;
   };
+
+  const changeColor = (event) => {
+    setColor(event.target.value)
+  }
+
+  const changeWidth = (event) => {
+    setWidth(event.target.value)
+  }
 
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
     contextRef.current.beginPath();
     contextRef.current.moveTo(offsetX, offsetY);
+    contextRef.current.strokeStyle = currentColor
+    contextRef.current.lineWidth = currentWidth
     setIsDrawing(true);
   };
 
@@ -70,7 +78,11 @@ export const CanvasProvider = ({ children }) => {
         finishDrawing,
         clearCanvas,
         draw,
-        saveCanvas
+        saveCanvas,
+        changeColor, 
+        changeWidth,
+        currentColor,
+        currentWidth
       }}
     >
       {children}
