@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
 import { useState, useEffect } from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 import CollectionShow from "./components/CollectionShow";
 import CollectionsIndex from "./components/CollectionsIndex";
 import CreateDrawing from "./components/CreateDrawing";
@@ -15,21 +15,23 @@ import PreLoader1 from "./components/PreLoader1"
 
 function App() {
 
-  let userId = localStorage.user
+  // let userId = localStorage.user
 
-  const [user, setUser] = useState({name:""})
-  const [notLoggedIn, setLoggedIn] = useState(userId ==="" ? true : false)
+  const [user, setUser] = useState({})
+  const [isLoggedIn, setLoggedIn] = useState(user.name ? true : false)
   const [drawings, setDrawings] = useState([])
   const [collections, setCollections] = useState([])
   const [done, setDone] = useState(undefined)
   
   
-  useEffect(fetchUser, [userId])
-  useEffect(fetchDrawings, [])
-  useEffect(fetchCollections, [])
+  // useEffect(fetchUser, [])
+  useEffect(fetchDrawings, [user])
+  useEffect(fetchCollections, [user])
   
+  console.log(user.id)
+
   function fetchDrawings() {
-    fetch(`http://localhost:3000/users/${userId}/pictures`)
+    fetch(`http://localhost:3000/users/${user.id}/pictures`)
     .then(res => res.json())
     .then(drawingArray => {
       setDrawings(drawingArray)
@@ -38,23 +40,23 @@ function App() {
   }
   
   function fetchCollections() {
-    fetch(`http://localhost:3000/users/${userId}/collections`)
+    fetch(`http://localhost:3000/users/${user.id}/collections`)
     .then(res => res.json())
     .then(data => {
       console.log("collections", data)
-      console.log("userID", userId)
+      // console.log("userID", userId)
       console.log("user", user)
       setCollections(data)
     })
   }
 
-  function fetchUser(){
-    fetch(`http://localhost:3000/users/${userId}`)
-      .then(resp=>resp.json())
-      .then(user => {
-        setUser(user)
-      })
-  }
+  // function fetchUser(){
+  //   fetch(`http://localhost:3000/users/${userId}`)
+  //     .then(resp=>resp.json())
+  //     .then(user => {
+  //       setUser(user)
+  //     })
+  // }
   
   function updatePicture(formData, id) {
      fetch(`http://localhost:3000/pictures/${id}`,{
@@ -76,31 +78,30 @@ function App() {
       { !done ? <PreLoader1 /> : <>
       <Header />
       <main>
-        {notLoggedIn ? <LoginPage setUser={setUser} setLoggedIn={setLoggedIn} notLoggedIn={notLoggedIn} /> : 
-        <>
         <Router>
-          <NavMenu setLoggedIn={setLoggedIn}/>  
+          <NavMenu setLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} />  
 
           <Switch>  
+            <Route path="/login">
+                <LoginPage setUser={setUser} setLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} />
+            </Route>
             <Route path="/new-drawing">
-                <CreateDrawing collections={collections} user={user}/>
+                {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CreateDrawing collections={collections} user={user}/>}
             </Route>
             <Route exact path="/collections">
-              <CollectionsIndex collections={collections}/>
+              {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CollectionsIndex collections={collections}/>}
             </Route>
             <Route path="/collections/:id">
-              <CollectionShow updatePicture={updatePicture} pictures={drawings} />
+              {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CollectionShow updatePicture={updatePicture} collections={collections} />}
             </Route>
             <Route path="/pictures/:id">
-              <PictureShow updatePicture={updatePicture} drawings={drawings}/>
+              {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <PictureShow updatePicture={updatePicture} drawings={drawings}/>}
             </Route>
             <Route exact path="/">
-              <Home pictures={drawings} user={user} />
+             {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <Home pictures={drawings} user={user} />}
             </Route>
           </Switch>
         </Router>
-        </>
-        } 
       </main>
       </>}
     </div>

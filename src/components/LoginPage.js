@@ -1,14 +1,14 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 
-function LoginPage({setLoggedIn, setUser, notLoggedIn}){
+function LoginPage({setLoggedIn, setUser, isLoggedIn}){
 
   const [loginEmail, setLoginEmail] = useState("")
   const [newUserForm, setNewUserForm] = useState({name:"", email:""})
   const [errors, setErrors] = useState("")
 
   const history = useHistory()
-  console.log(notLoggedIn)
+  console.log(isLoggedIn)
 
   function handleNewUserFormChange(event){
 
@@ -66,9 +66,9 @@ function LoginPage({setLoggedIn, setUser, notLoggedIn}){
     console.log(userData)
     setErrors("")
     setUser(userData)
-    setLoggedIn(false)
-    // history.push("/")
-    localStorage.setItem("user", userData.id)
+    setLoggedIn(true)
+    history.push("/")
+    // localStorage.setItem("user", userData.id)
   }
 
 

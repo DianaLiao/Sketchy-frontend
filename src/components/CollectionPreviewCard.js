@@ -18,7 +18,7 @@ function CollectionPreviewCard(collection) {
                 <Image src={firstPic.image_url} alt={firstPic.name}/>
                 <Card.Content>
                     <Card.Header>{name}</Card.Header>
-                    <Card.Meta>{description}}</Card.Meta>
+                    <Card.Meta>{description}</Card.Meta>
                 </Card.Content>
             </Card>
         </div>

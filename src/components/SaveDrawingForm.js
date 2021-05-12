@@ -8,7 +8,7 @@ function SaveDrawingForm({collections, user}) {
   const blankForm = {name:"", description:"", public:false, image_url:"", collection_id:""}
   const [formData, setFormData] = useState(blankForm)
 
-  const userId = user.id || localStorage.user
+  const userId = user.id 
 
   function handleFormChange(event){
     const property = event.target.name

@@ -1,11 +1,13 @@
 import { NavLink } from "react-router-dom"
 
-function NavMenu({setLoggedIn}) {
+function NavMenu({setLoggedIn, isLoggedIn}) {
 
   function logOut(){
-    setLoggedIn(true)
-    localStorage.setItem("user", "")
+    setLoggedIn(false)
+    // localStorage.setItem("user", "")
   }
+
+  if (!isLoggedIn) {return null}
 
   return(
     <nav>

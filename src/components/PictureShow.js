@@ -47,7 +47,7 @@ function PictureShow({updatePicture, drawings}){
 
     function handlePictureDeletion() {
       fetch(`http://localhost:3000/pictures/${id}`, {method: 'DELETE'})
-      .then(res => res.json())
+      .then(console.log)
       .then(_ => {
         history.push('/')
       })
