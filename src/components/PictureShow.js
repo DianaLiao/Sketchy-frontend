@@ -1,8 +1,10 @@
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { useState, useEffect } from "react"
 
 function PictureShow({updatePicture, drawings}){
   
+  const history = useHistory()
+
   const {id} = useParams()
   // const selectedDrawing = drawings.find( drawing => {
   //   return drawing.id === parseInt(params.id)
@@ -43,6 +45,14 @@ function PictureShow({updatePicture, drawings}){
       updatePicture(updatePictureFormData, id)
     }
 
+    function handlePictureDeletion() {
+      fetch(`http://localhost:3000/pictures/${id}`, {method: 'DELETE'})
+      .then(res => res.json())
+      .then(_ => {
+        history.push('/')
+      })
+
+    }
 
   return (
     <div className="show-picture">
@@ -61,6 +71,8 @@ function PictureShow({updatePicture, drawings}){
         <label for="isPublic">Mark as public?</label><br></br>
         <input type="submit" value="Update This Drawing"></input>
       </form>
+      <br></br>
+      <button onClick={handlePictureDeletion} >Delete This Drawing</button>
     </div>
   )
 }

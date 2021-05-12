@@ -39,8 +39,21 @@ function SaveDrawingForm({collections, user}) {
       .then(resp => resp.json())
       .then(data => {
         console.log(data)
+
+        const collectionPostObj = {
+          method: "POST",
+          headers: {
+            "Content-Type":"application/json"
+          },
+          body: JSON.stringify({collection_id: event.target.collection_id.value, picture_id: data.id })
+        }
+        fetch("http://localhost:3000/picture_collections", collectionPostObj)
+        .then(res => res.json())
+        .then(console.log)
       })
 
+      
+    
   }
 
   const collectionOptions = collections.map(collection => {

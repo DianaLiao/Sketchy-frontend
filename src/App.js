@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";
 // import MainContainer from "./components/MainContainer";
 import NavMenu from "./components/NavMenu";
+import PreLoader1 from "./components/PreLoader1"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
   const [notLoggedIn, setLoggedIn] = useState(userId ==="" ? true : false)
   const [drawings, setDrawings] = useState([])
   const [collections, setCollections] = useState([])
+  const [done, setDone] = useState(undefined)
   
   
   useEffect(fetchUser, [userId])
@@ -29,7 +31,10 @@ function App() {
   function fetchDrawings() {
     fetch(`http://localhost:3000/users/${userId}/pictures`)
     .then(res => res.json())
-    .then(setDrawings)
+    .then(drawingArray => {
+      setDrawings(drawingArray)
+      setTimeout(() => setDone(true), 4000)
+    })
   }
   
   function fetchCollections() {
@@ -62,9 +67,13 @@ function App() {
      .then(res => res.json())
      .then(console.log)
   }
+
+
+
   
   return (
     <div className="App">
+      { !done ? <PreLoader1 /> : <>
       <Header />
       <main>
         {notLoggedIn ? <LoginPage setUser={setUser} setLoggedIn={setLoggedIn} notLoggedIn={notLoggedIn} /> : 
@@ -91,8 +100,9 @@ function App() {
           </Switch>
         </Router>
         </>
-        }
+        } 
       </main>
+      </>}
     </div>
   )
 }
