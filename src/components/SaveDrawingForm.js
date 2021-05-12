@@ -1,7 +1,7 @@
 import {useCanvas} from "./CanvasContext"
 import {useState} from "react"
 
-function SaveDrawingForm({collections, user}) {
+function SaveDrawingForm({collections, user, setCollections}) {
 
   const {saveCanvas} = useCanvas()
   
@@ -37,19 +37,32 @@ function SaveDrawingForm({collections, user}) {
 
     fetch("http://localhost:3000/pictures", fetchObj)
       .then(resp => resp.json())
-      .then(data => {
-        console.log(data)
+      .then(newPicture => {
+        console.log(newPicture)
+        
 
         const collectionPostObj = {
           method: "POST",
           headers: {
             "Content-Type":"application/json"
           },
-          body: JSON.stringify({collection_id: event.target.collection_id.value, picture_id: data.id })
+          body: JSON.stringify({collection_id: event.target.collection_id.value, picture_id: newPicture.id })
         }
+
+
         fetch("http://localhost:3000/picture_collections", collectionPostObj)
         .then(res => res.json())
-        .then(console.log)
+        .then(() =>{
+          let collectionsCopy = [...collections]
+        const specificCollection = collectionsCopy.find( collection => collection.id == event.target.collection_id.value)
+      
+        specificCollection.pictures.push(newPicture)
+        let filteredCollection = collectionsCopy.filter( collection => collection.id != event.target.collection_id.value)
+        filteredCollection.push(specificCollection)
+        setCollections(filteredCollection)
+
+        
+        })
       })
 
       

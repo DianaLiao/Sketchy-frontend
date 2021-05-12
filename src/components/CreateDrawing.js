@@ -3,13 +3,13 @@ import DrawingApp from "./DrawingApp"
 import { CanvasProvider } from "./CanvasContext"
 import SaveDrawingForm from "./SaveDrawingForm"
 
-function CreateDrawing({collections, user}){
+function CreateDrawing({collections, user, setCollections}){
 
 
   return (
     <CanvasProvider>
       <DrawingApp />
-      <SaveDrawingForm collections={collections} user={user}/>
+      <SaveDrawingForm setCollections={setCollections} collections={collections} user={user}/>
     </CanvasProvider>
   )
 }

@@ -86,7 +86,7 @@ function App() {
                 <LoginPage setUser={setUser} setLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} />
             </Route>
             <Route path="/new-drawing">
-                {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CreateDrawing collections={collections} user={user}/>}
+                {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CreateDrawing setCollections={setCollections} collections={collections} user={user}/>}
             </Route>
             <Route exact path="/collections">
               {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CollectionsIndex collections={collections}/>}
