@@ -1,6 +1,7 @@
 import {useCanvas} from "./CanvasContext"
 import {useState} from "react"
 import {useHistory} from "react-router-dom"
+import { Button, Form } from 'semantic-ui-react'
 
 function SaveDrawingForm({collections, user, setCollections}) {
 
@@ -81,18 +82,19 @@ function SaveDrawingForm({collections, user, setCollections}) {
   })
   
   return (
-    <form onSubmit={handleFormSubmit}>
+    <Form onSubmit={handleFormSubmit}>
       <label for="name">Name:</label>
       <input onChange={handleFormChange} type="text" name="name" value={formData.name}></input><br></br>
       <label for="description">Description:</label>
       <input onChange={handleFormChange} type="text" name="description" value={formData.description}></input><br></br>
+      <label for="collection">Add to collection:</label>
       <select onChange={handleFormChange} name="collection_id" id="collection">
         {collectionOptions}
-      </select>
+      </select><br></br>
       <label for="isPublic">Make public?</label>
-      <input onChange={handleFormChange} type="checkbox" name="isPublic" value={formData.isPublic}></input>
+      <input onChange={handleFormChange} type="checkbox" name="isPublic" value={formData.isPublic}></input><br></br>
       <input type="submit" value="Save?"></input>
-    </form>
+    </Form>
 
   )
 }

@@ -25,21 +25,39 @@ header h1 {
   margin: auto;
 }
 
-/* nav {
-  display:flex;
-
+nav {
+  margin: 0px 0px 15px 0px;
 }
 
-nav a {
+
+/* nav a {
   margin: 0px 20px 0px 0px;
 }
 
 nav a.active {
   background-color: grey;
-} */
+} */ */
 
 main {
   margin: 0px 10px;
+}
+
+div.loader-body{
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+}
+
+div.loader-body h1{
+  /* width:fit-content; */
+  /* justify-self: center; */
+  text-align: center;
+}
+
+div.loader-body div{
+  /* width:fit-content; */
+  /* justify-self: center; */
+  margin: 0 auto;
 }
 
 div.forms {
@@ -64,6 +82,17 @@ h1#public-title{
 
 canvas {
   border: 1px solid black;
+}
+
+div.collection-index {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+}
+
+div.collection-index button {
+  width: 200px;
+  display: inline-block;
 }
 
 div.collection{
@@ -91,7 +120,7 @@ div.show-picture img {
   max-width: 400px;
 }
 
-div.drawing-app {
+div.drawing-app, div.drawing-form {
   display: flex;
   justify-content: center;
 }
@@ -104,5 +133,5 @@ aside.toolbar {
 }
 
 aside.toolbar input{
-  overflow: auto;
+  width: inherit;
 }

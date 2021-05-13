@@ -9,11 +9,11 @@ function NavMenu({setLoggedIn, isLoggedIn}) {
     // localStorage.setItem("user", "")
   }
 
-  const [activePage, setActive] = useState("home")
+  const [activePage, setActive] = useState("/")
 
   function handleNavClick(event){
-    // console.log(event.target)
-    // setActive(event.target.name)
+    console.dir(event)
+    setActive(event.target.pathname)
     // console.log(activePage)
   }
 
@@ -22,17 +22,17 @@ function NavMenu({setLoggedIn, isLoggedIn}) {
   return(
     <nav>
       <Menu pointing>
-        <Menu.Item name="home" active={activePage === "home"} onClick={handleNavClick}>
+        <Menu.Item name="home" active={activePage === "/"} onClick={handleNavClick}>
           <NavLink className="" exact to="/">
             Home
           </NavLink>
         </Menu.Item> 
-        <Menu.Item name="new-drawing" active={activePage === 'new-drawing'} onClick={handleNavClick}>
+        <Menu.Item name="new-drawing" active={activePage === '/new-drawing'} onClick={handleNavClick}>
           <NavLink className="" to="/new-drawing">
             Create New Drawing
           </NavLink>
         </Menu.Item>
-        <Menu.Item name="collections" active={activePage === 'collections'} onClick={handleNavClick}>
+        <Menu.Item name="collections" active={activePage === '/collections'} onClick={handleNavClick}>
           <NavLink className="" to="/collections">
             View Your Collections
           </NavLink>

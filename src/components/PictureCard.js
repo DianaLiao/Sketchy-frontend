@@ -31,7 +31,7 @@ function PictureCard({picture, updatePicture, collectionId, handlePictureCardDel
                         updatePicture({favorite: !isFavorite}, id, collectionId)
                         setIsFavorite(!isFavorite)}}>
                         <Button.Content visible>{isFavorite ? "⭐️ ": "☆"}</Button.Content>
-                        <Button.Content hidden>{isFavorite ? "Remove from Favorites" : "Add To Favorites"}</Button.Content>
+                        <Button.Content hidden>{isFavorite ? "Remove?" : "Favorite?"}</Button.Content>
                     </Button>
                     <Button animated="fade" basic color="yellow" onClick={()=>{
                         updatePicture({isPublic: !isPublicCardValue}, id, collectionId)

@@ -13,8 +13,9 @@ function CreateDrawing({collections, user, setCollections}){
         <DrawingApp />
         <DrawingToolbar />
       </div>
+      <div className="drawing-form">
         <SaveDrawingForm setCollections={setCollections} collections={collections} user={user}/>
-
+      </div>
     </CanvasProvider>
   )
 }

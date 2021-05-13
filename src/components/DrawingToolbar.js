@@ -27,7 +27,6 @@ function DrawingToolbar(){
 
   return(
     <aside className="toolbar">
-      Tool...bar?
       <label for="color-picker">Choose color:</label>
         <input id="color-picker" type="color" value={currentColor} onChange={changeColor}></input>
       

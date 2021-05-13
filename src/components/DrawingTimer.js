@@ -42,7 +42,7 @@ function DrawingTimer(){
 
   return(
     <>
-      Optional Timer
+      Use a timer?
       <form onSubmit={handleTimerSubmit}>
         <label for="timer-set">Set number of seconds:</label>
           <input id="timer-set" type="number" min="5" value={timerInput} onChange={e => setTimerInput(e.target.value)}></input>

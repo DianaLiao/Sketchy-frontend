@@ -1,5 +1,6 @@
 import CollectionPreviewCard from "./CollectionPreviewCard"
 import { useHistory } from "react-router-dom"
+import { Button } from 'semantic-ui-react'
 
 function CollectionsIndex({collections, createNewCollection}){
 
@@ -15,13 +16,13 @@ function CollectionsIndex({collections, createNewCollection}){
   }
 
   return (
-    <>
-    <h1>Your Collections</h1>
-    <button onClick={handleCreateNewCollectionClick} >Create New Collection</button>
-    <div className="collection">
-      {collectionCards}
+    <div className="collection-index">
+      <h1>Your Collections</h1>
+      <Button inverted color="violet" onClick={handleCreateNewCollectionClick} >Create New Collection</Button>
+      <div className="collection">
+        {collectionCards}
+      </div>
     </div>
-    </>
   )
 }
 
