@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
 import { useState, useEffect } from "react"
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Redirect, useHistory } from "react-router-dom"
 import CollectionShow from "./components/CollectionShow";
 import CollectionsIndex from "./components/CollectionsIndex";
 import CreateDrawing from "./components/CreateDrawing";
@@ -12,6 +12,7 @@ import LoginPage from "./components/LoginPage";
 // import MainContainer from "./components/MainContainer";
 import NavMenu from "./components/NavMenu";
 import PreLoader1 from "./components/PreLoader1"
+import NewCollectionForm from "./components/NewCollectionForm"
 
 function App() {
 
@@ -22,7 +23,6 @@ function App() {
   const [drawings, setDrawings] = useState([])
   const [collections, setCollections] = useState([])
   const [done, setDone] = useState(undefined)
-  
   
   // useEffect(fetchUser, [])
   useEffect(fetchDrawings, [user])
@@ -58,8 +58,8 @@ function App() {
   //     })
   // }
   
-  function updatePicture(formData, id) {
-     fetch(`http://localhost:3000/pictures/${id}`,{
+  function updatePicture(formData, pictureId, collectionId) {
+     fetch(`http://localhost:3000/pictures/${pictureId}`,{
        method: "PATCH",
        headers: {
          "Content-Type": "application/json"
@@ -67,9 +67,40 @@ function App() {
        body: JSON.stringify(formData)
      })
      .then(res => res.json())
-     .then(console.log)
+     .then(updatedDrawingObject => {
+      console.log("updatedDrawingObject", updatedDrawingObject)
+
+
+      const collectionsCopy = [...collections]
+      const selectedIndex = collectionsCopy.findIndex(collection => collection.id == collectionId )
+      const updatedCollection = collectionsCopy[selectedIndex]
+      const selectedPicIndex = updatedCollection.pictures.findIndex(picture => picture.id == pictureId )
+      updatedCollection.pictures[selectedPicIndex] = updatedDrawingObject
+      collectionsCopy[selectedIndex] = updatedCollection
+      setCollections(collectionsCopy)
+     
+     })
   }
 
+  function handlePictureCardDeletion(pictureId, collectionId) {
+    console.log("pictureId",pictureId,"collectionId",collectionId)
+
+    fetch(`http://localhost:3000/pictures/${pictureId}`, {method: 'DELETE'})
+      .then(console.log)
+      .then(_ => {
+        const collectionsCopy = [...collections]
+        const selectedCollectionIndex = collectionsCopy.findIndex(collection => collection.id == collectionId)
+        const updatedCollection = collectionsCopy[selectedCollectionIndex]
+        const selectedPicIndex = updatedCollection.pictures.findIndex(picture => picture.id == pictureId)
+        updatedCollection.pictures.splice(selectedPicIndex,1)
+        collectionsCopy[selectedCollectionIndex] = updatedCollection
+        setCollections(collectionsCopy)
+      })
+  }
+
+  function renderNewCollection() {
+    console.log('clicked')
+  }
 
 
   
@@ -92,13 +123,16 @@ function App() {
               {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CollectionsIndex collections={collections}/>}
             </Route>
             <Route path="/collections/:id">
-              {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CollectionShow updatePicture={updatePicture} collections={collections} />}
+              {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CollectionShow handlePictureCardDeletion={handlePictureCardDeletion} updatePicture={updatePicture} collections={collections} />}
             </Route>
             <Route path="/pictures/:id">
               {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <PictureShow updatePicture={updatePicture} drawings={drawings}/>}
             </Route>
+            <Route exact path="/new-collection">
+              {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <NewCollectionForm renderNewCollection={renderNewCollection} />}
+            </Route>
             <Route exact path="/">
-             {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <Home pictures={drawings} user={user} />}
+              {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <Home pictures={drawings} user={user} />}
             </Route>
           </Switch>
         </Router>

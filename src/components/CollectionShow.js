@@ -2,14 +2,14 @@ import PictureCard from "./PictureCard"
 import { useParams } from "react-router-dom"
 
 
-function CollectionShow({collections, updatePicture}){
+function CollectionShow({collections, updatePicture, handlePictureCardDeletion}){
 
   const params = useParams()
 
   const selectedCollection = collections.find(collection => collection.id == params.id)
 
   const cardList = selectedCollection.pictures.map(picture => {
-    return <PictureCard key={picture.id} picture={picture} updatePicture={updatePicture}/>
+    return <PictureCard handlePictureCardDeletion={handlePictureCardDeletion} collectionId={params.id} key={picture.id} picture={picture} updatePicture={updatePicture}/>
   })
 
   return (
