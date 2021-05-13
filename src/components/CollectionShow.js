@@ -1,16 +1,26 @@
 import PictureCard from "./PictureCard"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 
 
-function CollectionShow({collections, updatePicture, handlePictureCardDeletion}){
+function CollectionShow({collections, updatePicture, handlePictureCardDeletion, handleCollectionDeleteRender}){
 
   const params = useParams()
 
   const selectedCollection = collections.find(collection => collection.id == params.id)
 
+  const history = useHistory()
+
   const cardList = selectedCollection.pictures.map(picture => {
     return <PictureCard handlePictureCardDeletion={handlePictureCardDeletion} collectionId={params.id} key={picture.id} picture={picture} updatePicture={updatePicture}/>
   })
+
+  function handleCollectionDeleteClick() {
+    fetch(`http://localhost:3000/collections/${selectedCollection.id}`, {method: 'DELETE'})
+      .then(console.log)
+
+      handleCollectionDeleteRender(selectedCollection.id)
+      history.push('/collections')
+  }
 
   return (
     <>
@@ -20,6 +30,7 @@ function CollectionShow({collections, updatePicture, handlePictureCardDeletion})
     <div className="collection">
       {cardList}
     </div>
+    <button onClick={handleCollectionDeleteClick}>🗑️ Send Collection To TrashBin</button>
     </>
   )
 }

@@ -1,31 +1,36 @@
 import {useState} from "react"
+import {useHistory} from "react-router-dom"
 
-function NewCollectionForm() {
-const [newCollectionFormData, setNetCollectionFormData] = useState({})
+function NewCollectionForm({user, handleCollectionFormSubmit}) {
+const [newCollectionFormData, setNewCollectionFormData] = useState({
+    name: "",
+    description: "",
+    user_id: ""
+})
 
-    // function handleFormChange(event){
-    //     const property = event.target.name
-    //     let value = event.target.value
+const history = useHistory()
+
+    function handleFormChange(event){
+        const property = event.target.name
+        let value = event.target.value
     
-    //     const image_url = saveCanvas()
-    
-    //     if (event.target.type === "checkbox") {
-    //       value = event.target.checked;
-    //     }
-    
-    //     setFormData({...formData, [property]:value, image_url})
-    //   }
+        setNewCollectionFormData({...newCollectionFormData, [property]:value, user_id: user.id })
+      }
+
+      function navigateToFunction() {
+        setTimeout(history.push('/collections'),2000)
+      }
 
     return(
         <>
         <h1>New Collection Form</h1>
-        {/* <form onSubmit={handleFormSubmit}>
-        <input onChange={handleFormChange} type="text" name="name" placeholder={name} value={updatePictureFormData.name}></input><br></br>
-        <textarea onChange={handleFormChange} name="description" placeholder={description} rows="15" cols="40" value={updatePictureFormData.description}></textarea><br></br>
-        <input onChange={handleFormChange} id="isPublic" type="checkbox" name="isPublic" value={updatePictureFormData.isPublic}></input>
-        <label for="isPublic">Mark as public?</label><br></br>
-        <input type="submit" value="Update This Drawing"></input> */}
-      {/* </form> */}
+        <form onSubmit={event => {
+            handleCollectionFormSubmit(event, newCollectionFormData)
+            navigateToFunction()}}> 
+        <input onChange={handleFormChange} type="text" name="name" placeholder="Collection Name" value={newCollectionFormData.name}></input><br></br>
+        <textarea onChange={handleFormChange} name="description" placeholder="Description" rows="15" cols="40" value={newCollectionFormData.description}></textarea><br></br>
+        <input type="submit" value="Create New Collection"></input>
+      </form>
         </>
 
     )}

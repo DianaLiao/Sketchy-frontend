@@ -98,10 +98,27 @@ function App() {
       })
   }
 
-  function renderNewCollection() {
-    console.log('clicked')
+  function handleCollectionFormSubmit(event, newCollectionFormData) {
+    event.preventDefault()
+    console.log(newCollectionFormData)
+    fetch(`http://localhost:3000/collections`, {
+      method: "POST",
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(newCollectionFormData)
+    })
+    .then(res => res.json())
+    .then(newCollectionObject => {
+      const newArray = [...collections, newCollectionObject]
+      setCollections(newArray)
+    })
   }
 
+  function handleCollectionDeleteRender(collectionId) {
+    const newArrayAfterDeletion = collections.filter( collection => collection.id !== collectionId)
+    setCollections(newArrayAfterDeletion)
+  }
 
   
   return (
@@ -123,13 +140,13 @@ function App() {
               {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CollectionsIndex collections={collections}/>}
             </Route>
             <Route path="/collections/:id">
-              {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CollectionShow handlePictureCardDeletion={handlePictureCardDeletion} updatePicture={updatePicture} collections={collections} />}
+              {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <CollectionShow handleCollectionDeleteRender={handleCollectionDeleteRender} handlePictureCardDeletion={handlePictureCardDeletion} updatePicture={updatePicture} collections={collections} />}
             </Route>
             <Route path="/pictures/:id">
               {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <PictureShow updatePicture={updatePicture} drawings={drawings}/>}
             </Route>
             <Route exact path="/new-collection">
-              {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <NewCollectionForm renderNewCollection={renderNewCollection} />}
+              {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <NewCollectionForm user={user} handleCollectionFormSubmit={handleCollectionFormSubmit} />}
             </Route>
             <Route exact path="/">
               {!isLoggedIn ? <Redirect to="/login"> </Redirect> : <Home pictures={drawings} user={user} />}
