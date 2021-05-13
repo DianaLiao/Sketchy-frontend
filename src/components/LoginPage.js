@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
+import { Button, Form } from 'semantic-ui-react'
 
 function LoginPage({setLoggedIn, setUser, isLoggedIn}){
 
@@ -68,31 +69,36 @@ function LoginPage({setLoggedIn, setUser, isLoggedIn}){
     setUser(userData)
     setLoggedIn(true)
     history.push("/")
-    // localStorage.setItem("user", userData.id)
   }
 
 
   return(
-    <div>
+    <div className="forms">
       <h3>Existing User Login</h3>
-      <form onSubmit={handleLoginSubmit}>
-        <label for="login-email">E-mail:</label>
-        <input onChange={(e)=>setLoginEmail(e.target.value)} value={loginEmail} type="text" id="login-email"></input><br/>
-        <input type="submit" value="Login"></input>
-      </form>
+      <Form onSubmit={handleLoginSubmit}>
+        <Form.Field>
+          <label for="login-email">E-mail:</label>
+          <input onChange={(e)=>setLoginEmail(e.target.value)} value={loginEmail} type="text" id="login-email"></input><br/>
+        </Form.Field>
+        <Button type="submit">Login</Button>
+      </Form>
       <hr></hr>
       {errors !== "" && errors.map(error => {
         return <p>{error}</p>
       })}
       <hr></hr>
       <h3>New User Sign Up</h3>
-      <form onSubmit={handleNewUserSubmit}>
-        <label for="name">Name:</label>
-        <input onChange={handleNewUserFormChange} value={newUserForm.name} type="text" id="name"></input><br/>
-        <label for="email">E-mail:</label>
-        <input onChange={handleNewUserFormChange} value={newUserForm.email} type="text" id="email"></input><br/>
-        <input type="submit" value="Sign up!"></input>
-      </form>
+      <Form onSubmit={handleNewUserSubmit}>
+        <Form.Field>
+          <label for="name">Name:</label>
+          <input onChange={handleNewUserFormChange} value={newUserForm.name} type="text" id="name"></input><br/>
+        </Form.Field>
+        <Form.Field>
+          <label for="email">E-mail:</label>
+          <input onChange={handleNewUserFormChange} value={newUserForm.email} type="text" id="email"></input><br/>
+        </Form.Field>
+        <Button type="submit">Sign up!</Button>
+      </Form>
     </div>
 
   )

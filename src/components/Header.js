@@ -3,11 +3,9 @@
 
 function Header(){
   return(
-    <body >
-    <header>
-    <a href="/"><h1>*~ i'M sO sKeTcHy ~*</h1></a>
+    <header className="still-header">
+      <h1>Sketchy  ✎📚</h1>
     </header>
-    </body>
   )
 }
 

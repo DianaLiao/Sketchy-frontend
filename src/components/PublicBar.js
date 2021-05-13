@@ -16,7 +16,7 @@ function PublicBar({pictures}) {
 
     return (
         <>
-            <h1>PUBLIC BAR</h1>
+            <h1 id="public-title">PUBLIC BAR</h1>
             <div className="display-bar">
                 {publicPicElements}
             </div>

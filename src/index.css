@@ -12,7 +12,20 @@ code {
     monospace;
 }
 
-nav {
+header.still-header {
+  background-image: linear-gradient(to bottom right, #3c0c69, #e8dd74);
+  color: white;
+  height: 80px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header h1 {
+  margin: auto;
+}
+
+/* nav {
   display:flex;
 
 }
@@ -23,10 +36,30 @@ nav a {
 
 nav a.active {
   background-color: grey;
-}
+} */
 
 main {
-  margin: 10px;
+  margin: 0px 10px;
+}
+
+div.forms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.home-view h1{
+  color: white;
+  text-align: center;
+}
+
+h1#favorite-title{
+  background-color: teal;
+}
+
+h1#public-title{
+  background-color: rgb(17, 57, 167);
 }
 
 canvas {

@@ -16,7 +16,7 @@ function Home({pictures, user}){
   return (
     <div className="home-view">
       <br></br>
-      <span>Hi, {user.name}!</span><br></br>
+      <span>Hi, <b>{user.name}</b>!</span><br></br>
       <span>Hope you're ready to color!</span><br></br>
 
       <FavoriteBar pictures={pictures} />

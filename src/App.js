@@ -129,7 +129,7 @@ function App() {
     <div className="App">
       { !done ? <PreLoader1 /> : <>
       <Header />
-      <main>
+      <main className="main">
         <Router>
           <NavMenu setLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} />  
 
