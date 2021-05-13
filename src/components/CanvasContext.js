@@ -5,7 +5,7 @@ const CanvasContext = React.createContext();
 export const CanvasProvider = ({ children }) => {
   const [isDrawing, setIsDrawing] = useState(false)
   const [currentColor, setColor] = useState("#000000")
-  const [currentWidth, setWidth] = useState(5)
+  const [currentWidth, setWidth] = useState(8)
   let canvasRef = useRef(null);
   let contextRef = useRef(null);
 

@@ -1,6 +1,6 @@
 import {useCanvas} from "./CanvasContext"
 import {useRef, useEffect} from "react"
-
+import DrawingTimer from "./DrawingTimer"
 
 
 function DrawingToolbar(){
@@ -29,12 +29,13 @@ function DrawingToolbar(){
     <aside className="toolbar">
       Tool...bar?
       <label for="color-picker">Choose color:</label>
-        <input id="color-picker" type="color" onChange={changeColor}></input>
+        <input id="color-picker" type="color" value={currentColor} onChange={changeColor}></input>
       
       <label for="brush-size">Brush Preview:</label>
-        <input id="brush-size" type="range" min="1" max="15" onChange={changeWidth}></input>
+        <input id="brush-size" type="range" min="1" max="15" value={currentWidth} onChange={changeWidth}></input>
       
       <BrushPreview />
+      <DrawingTimer />
     </aside>
   )
 }
