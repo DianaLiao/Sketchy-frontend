@@ -7,7 +7,9 @@ function PreLoader1() {
 
     return (
         <>
+            <body className="loader-body">
             <ReactLoading type={"balls"} color={"purple"} height={667} width={375} />
+            </body>
         </>
     )
 }
