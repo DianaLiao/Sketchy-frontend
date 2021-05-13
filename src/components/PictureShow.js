@@ -19,7 +19,7 @@ function PictureShow({updatePicture, drawings}){
       .then(data => setPicture(data))
   }, [id])
 
-  const {name, favorite, description, image_url, isPublic} = picture
+  const {name, favorite, description, image_url, isPublic, first_collection} = picture
 
   const [updatePictureFormData, setUpdatePictureFormData] = useState({
     name: name,
@@ -42,7 +42,7 @@ function PictureShow({updatePicture, drawings}){
 
     function handleFormSubmit(event) {
       event.preventDefault()
-      updatePicture(updatePictureFormData, id)
+      updatePicture(updatePictureFormData, id, first_collection.id)
     }
 
     function handlePictureDeletion() {

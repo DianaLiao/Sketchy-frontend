@@ -95,6 +95,8 @@ function App() {
         updatedCollection.pictures.splice(selectedPicIndex,1)
         collectionsCopy[selectedCollectionIndex] = updatedCollection
         setCollections(collectionsCopy)
+        const newDrawingArray = drawings.filter(drawing => drawing.id !== pictureId)
+        setDrawings(newDrawingArray)
       })
   }
 
@@ -119,6 +121,8 @@ function App() {
     const newArrayAfterDeletion = collections.filter( collection => collection.id !== collectionId)
     setCollections(newArrayAfterDeletion)
   }
+
+
 
   
   return (
