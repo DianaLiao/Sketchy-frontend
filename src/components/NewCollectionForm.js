@@ -1,5 +1,7 @@
+import {useState} from "react"
 
 function NewCollectionForm() {
+const [newCollectionFormData, setNetCollectionFormData] = useState({})
 
     // function handleFormChange(event){
     //     const property = event.target.name
