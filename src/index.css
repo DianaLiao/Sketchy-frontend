@@ -32,33 +32,21 @@ nav {
 }
 
 
-/* nav a {
-  margin: 0px 20px 0px 0px;
+nav a, nav span {
+  color:#7f30c7;
+  font-weight: 900;
 }
-
-nav a.active {
-  background-color: grey;
-} */ */
 
 main {
   margin: 0px 10px;
 }
 
-div.loader-body{
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
-}
 
 div.loader-body h1{
-  /* width:fit-content; */
-  /* justify-self: center; */
   text-align: center;
 }
 
 div.loader-body div{
-  /* width:fit-content; */
-  /* justify-self: center; */
   margin: 0 auto;
 }
 
