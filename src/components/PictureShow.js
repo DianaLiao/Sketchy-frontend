@@ -44,6 +44,7 @@ function PictureShow({updatePicture, drawings}){
     function handleFormSubmit(event) {
       event.preventDefault()
       updatePicture(updatePictureFormData, id, first_collection.id)
+      history.push(`/collections/${first_collection.id}`)
     }
 
     function handlePictureDeletion() {
