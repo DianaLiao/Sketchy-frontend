@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { Form} from 'semantic-ui-react'
+import Swal from "sweetalert2"
 
 function DrawingTimer(){
 
@@ -20,7 +21,7 @@ function DrawingTimer(){
         setTimeRemaining("Done!")
       }
       else if (timeRemaining === "Done!"){
-        alert("time's up!")
+        Swal.fire("Mouse pencils down!")
       }
       else {setTimeRemaining(oldTime => oldTime-1)}
     }
