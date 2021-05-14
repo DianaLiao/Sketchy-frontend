@@ -184,3 +184,7 @@ body::-webkit-scrollbar-thumb {
   background-color: rgb(160, 71, 211);
   outline: 1px solid slategrey;
 }
+
+canvas {
+  cursor: crosshair
+}
