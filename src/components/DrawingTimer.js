@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Form} from 'semantic-ui-react'
 
 function DrawingTimer(){
 
@@ -42,13 +43,17 @@ function DrawingTimer(){
 
   return(
     <>
-      Use a timer?
-      <form onSubmit={handleTimerSubmit}>
+      <br></br>
+      Use a timer to challenge your creativity!
+      <br></br>
+      <br></br>
+      <Form onSubmit={handleTimerSubmit}>
         <label for="timer-set">Set number of seconds:</label>
-          <input id="timer-set" type="number" min="5" value={timerInput} onChange={e => setTimerInput(e.target.value)}></input>
-          <input type="submit" value={displayTimer ? "Close Timer" : "Start timer!"}></input>
+          <input id="timer-set" type="number" min="5" value={timerInput} onChange={e => setTimerInput(e.target.value)}></input><br></br>
+          <br></br>
+          <input style={{background: 'purple', color: 'white', 'border-radius': '13px'}} className="submit-buttons" type="submit" value={displayTimer ? "Close Timer" : "Start timer!"}></input>
           {displayTimer && <Timer />}
-      </form>
+      </Form>
     </>
   )
 }

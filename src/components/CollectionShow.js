@@ -1,5 +1,6 @@
 import PictureCard from "./PictureCard"
 import { useParams, useHistory } from "react-router-dom"
+import { Button } from 'semantic-ui-react'
 
 
 function CollectionShow({collections, updatePicture, handlePictureCardDeletion, handleCollectionDeleteRender}){
@@ -24,14 +25,25 @@ function CollectionShow({collections, updatePicture, handlePictureCardDeletion, 
 
   return (
     <>
+    <div className='collection-show'>
     <h2>{selectedCollection.name}</h2>
     <h3>Description: {selectedCollection.description}</h3>
+    <Button inverted color="blue" onClick={e => {history.push('/new-drawing')}}> Add a Drawing! </Button>
+    <br></br>
+    <br></br>
     <p>Click The Drawing To See More Details!</p>
+    </div>
     <div className="collection">
       {cardList}
     </div>
-    <button onClick={handleCollectionDeleteClick}>🗑️ Send Collection To TrashBin</button>
+    <br></br>
+    <div className='collection-show'>
+    <Button inverted color="red" onClick={handleCollectionDeleteClick}> 🗑️ Send Collection To TrashBin </Button>
+    </div>
+    <br></br>
+    <br></br>
     </>
+    
   )
 }
 

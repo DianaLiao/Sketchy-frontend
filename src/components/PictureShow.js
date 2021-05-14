@@ -1,5 +1,6 @@
 import { useParams, useHistory } from "react-router-dom"
 import { useState, useEffect } from "react"
+import { Button, Form } from 'semantic-ui-react'
 
 function PictureShow({updatePicture, drawings}){
   
@@ -56,6 +57,7 @@ function PictureShow({updatePicture, drawings}){
 
   return (
     <div className="show-picture">
+      <h1>Title:</h1>
       <h1>{name}</h1>
       <img src={image_url} alt={name} />
       <h3>Description:</h3>
@@ -64,15 +66,20 @@ function PictureShow({updatePicture, drawings}){
       </p>
       <hr></hr>
       <h3>Update This Drawing</h3>
-      <form onSubmit={handleFormSubmit}>
-        <input onChange={handleFormChange} type="text" name="name" placeholder={name} value={updatePictureFormData.name}></input><br></br>
-        <textarea onChange={handleFormChange} name="description" placeholder={description} rows="15" cols="40" value={updatePictureFormData.description}></textarea><br></br>
+      <Form onSubmit={handleFormSubmit}>
+        <label for="title">Title:</label>
+        <input id="title" onChange={handleFormChange} type="text" name="name" placeholder={name} value={updatePictureFormData.name}></input><br></br>
+        <label for="description">Description:</label>
+        <textarea id="description" onChange={handleFormChange} name="description" placeholder={description} rows="15" cols="40" value={updatePictureFormData.description}></textarea><br></br>
         <input onChange={handleFormChange} id="isPublic" type="checkbox" name="isPublic" value={updatePictureFormData.isPublic}></input>
         <label for="isPublic">Mark as public?</label><br></br>
-        <input type="submit" value="Update This Drawing"></input>
-      </form>
+        <input style={{background: 'purple', color: 'white', 'border-radius': '13px'}} type="submit" value="Update This Drawing"></input>
+      </Form>
+      <hr></hr>
       <br></br>
-      <button onClick={handlePictureDeletion} >Delete This Drawing</button>
+      <Button inverted color="red" onClick={handlePictureDeletion} > Send This Drawing to the Trashbin 🗑️ </Button>
+      <br></br>
+      <br></br>
     </div>
   )
 }

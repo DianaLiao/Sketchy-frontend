@@ -1,5 +1,6 @@
 import {useState} from "react"
 import {useHistory} from "react-router-dom"
+import { Button, Form } from 'semantic-ui-react'
 
 function NewCollectionForm({user, handleCollectionFormSubmit}) {
 const [newCollectionFormData, setNewCollectionFormData] = useState({
@@ -23,14 +24,16 @@ const history = useHistory()
 
     return(
         <>
+        <div className="new-collection-form">
         <h1>New Collection Form</h1>
-        <form onSubmit={event => {
+        <Form onSubmit={event => {
             handleCollectionFormSubmit(event, newCollectionFormData)
             navigateToFunction()}}> 
         <input onChange={handleFormChange} type="text" name="name" placeholder="Collection Name" value={newCollectionFormData.name}></input><br></br>
         <textarea onChange={handleFormChange} name="description" placeholder="Description" rows="15" cols="40" value={newCollectionFormData.description}></textarea><br></br>
-        <input type="submit" value="Create New Collection"></input>
-      </form>
+        <input style={{'margin-left': '6px', background: 'purple', color: 'white', 'border-radius': '13px'}} type="submit" value="Create New Collection"></input>
+      </Form>
+      </div>
         </>
 
     )}

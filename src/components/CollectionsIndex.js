@@ -18,10 +18,12 @@ function CollectionsIndex({collections, createNewCollection}){
   return (
     <div className="collection-index">
       <h1>Your Collections</h1>
-      <Button inverted color="violet" onClick={handleCreateNewCollectionClick} >Create New Collection</Button>
+      <Button style={{'margin-left':'12px'}} inverted color="green" onClick={handleCreateNewCollectionClick} >Create New Collection</Button>
       <div className="collection">
         {collectionCards}
       </div>
+      <br></br>
+      <br></br>
     </div>
   )
 }

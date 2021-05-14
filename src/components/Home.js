@@ -22,7 +22,8 @@ function Home({pictures, user}){
       <FavoriteBar pictures={pictures} />
       <br></br>
       <PublicBar pictures={publicPics} />
-    
+      <br></br>
+      <br></br>
       
     </div>
   )

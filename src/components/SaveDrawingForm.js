@@ -83,17 +83,23 @@ function SaveDrawingForm({collections, user, setCollections}) {
   
   return (
     <Form onSubmit={handleFormSubmit}>
+      <br></br>
       <label for="name">Name:</label>
       <input onChange={handleFormChange} type="text" name="name" value={formData.name}></input><br></br>
+      <br></br>
       <label for="description">Description:</label>
       <input onChange={handleFormChange} type="text" name="description" value={formData.description}></input><br></br>
+      <br></br>
       <label for="collection">Add to collection:</label>
       <select onChange={handleFormChange} name="collection_id" id="collection">
         {collectionOptions}
       </select><br></br>
-      <label for="isPublic">Make public?</label>
+      <label for="isPublic">Make public?</label><br></br>
       <input onChange={handleFormChange} type="checkbox" name="isPublic" value={formData.isPublic}></input><br></br>
-      <input type="submit" value="Save?"></input>
+      <br></br>
+      <input style={{background: 'purple', color: 'white', 'border-radius': '13px'}} type="submit" value="Save?"></input>
+      <br></br>
+      <br></br>
     </Form>
 
   )

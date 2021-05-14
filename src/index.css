@@ -19,10 +19,12 @@ header.still-header {
   display:flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 header h1 {
   margin: auto;
+  font-size: 32.0pt;
 }
 
 nav {
@@ -60,11 +62,17 @@ div.loader-body div{
   margin: 0 auto;
 }
 
+div.home-view span {
+  font-size: 18.0pt;
+  padding-left: 12px;
+}
+
 div.forms {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 15px
 }
 
 div.home-view h1{
@@ -74,21 +82,29 @@ div.home-view h1{
 
 h1#favorite-title{
   background-color: teal;
+  border-radius: 20px;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 h1#public-title{
   background-color: rgb(17, 57, 167);
+  border-radius: 20px;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 canvas {
   border: 1px solid black;
 }
 
-div.collection-index {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
+div.collection-index h1 {
+  margin-left: 12px
 }
+
+/* div.collection-index Button {
+  margin-left: 12px
+} */
 
 div.collection-index button {
   width: 200px;
@@ -110,14 +126,31 @@ div.display-bar {
   display: flex;
   flex-wrap: nowrap;
   overflow: auto;
+  border: 4px solid #4f22b8;
+border-radius: 10px;
+margin-top: 15px;
+margin-bottom: 15px;
+margin-left: 6px;
+margin-right: 6px;
+padding-bottom: 6px;
+
 }
 
 div.display-bar img {
   width: 150px;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
 }
 
 div.show-picture img {
   max-width: 400px;
+}
+
+div.show-picture {
+  margin-left: 18px;
+  margin-right:18px;
 }
 
 div.drawing-app, div.drawing-form {
@@ -134,4 +167,32 @@ aside.toolbar {
 
 aside.toolbar input{
   width: inherit;
+}
+
+
+div.collection-show {
+  margin-left: 12px;
+}
+
+div.new-collection-form {
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+div.show-picture p {
+  font-weight: bold;
+}
+
+body::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(160, 71, 211);
+  outline: 1px solid slategrey;
 }

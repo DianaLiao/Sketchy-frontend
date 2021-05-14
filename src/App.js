@@ -29,7 +29,7 @@ function App() {
   useEffect(fetchCollections, [user])
   
   console.log(user.id)
-
+  console.log("drawings on load", drawings)
   function fetchDrawings() {
     fetch(`http://localhost:3000/users/${user.id}/pictures`)
     .then(res => res.json())
@@ -69,6 +69,7 @@ function App() {
      .then(res => res.json())
      .then(updatedDrawingObject => {
       console.log("updatedDrawingObject", updatedDrawingObject)
+      console.log("drawings", drawings)
 
 
       const collectionsCopy = [...collections]
@@ -78,7 +79,10 @@ function App() {
       updatedCollection.pictures[selectedPicIndex] = updatedDrawingObject
       collectionsCopy[selectedIndex] = updatedCollection
       setCollections(collectionsCopy)
-     
+      const drawingArrayCopy = drawings.filter(drawing => drawing.id !== updatedDrawingObject.id)
+      console.log("drawingArrayCopy", drawingArrayCopy)
+      drawingArrayCopy.push(updatedDrawingObject)
+      setDrawings(drawingArrayCopy)
      })
   }
 
