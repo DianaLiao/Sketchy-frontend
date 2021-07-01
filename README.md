@@ -7,7 +7,7 @@ This project was a group project made with @HenPVel at Flatiron School for Phase
 ## Installation
 1. Fork and clone this repository
 1. In the repository directory, run `npm-install`
-1. Fork and clock [the backend](https://github.com/DianaLiao/Sketchy-backend) and follow those directions
+1. Fork and clone [the backend](https://github.com/DianaLiao/Sketchy-backend) and follow those directions
 1. Run `npm start`
 
 ## Using the App
