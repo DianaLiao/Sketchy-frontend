@@ -9,7 +9,6 @@ import PictureShow from "./components/PictureShow";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";
-// import MainContainer from "./components/MainContainer";
 import NavMenu from "./components/NavMenu";
 import PreLoader1 from "./components/PreLoader1"
 import NewCollectionForm from "./components/NewCollectionForm"
