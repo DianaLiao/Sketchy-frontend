@@ -4,6 +4,8 @@ Sketchy is an app where you can make drawings with different colors and brush si
 
 This project was a group project made with @HenPVel at Flatiron School for Phase 4.
 
+
+
 ## Installation
 1. Fork and clone this repository
 1. In the repository directory, run `npm-install`
