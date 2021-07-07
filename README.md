@@ -4,6 +4,7 @@ Sketchy is an app where you can make drawings with different colors and brush si
 
 This project was a group project made with @HenPVel at Flatiron School for Phase 4.
 
+![Sketchy demo gif](https://github.com/DianaLiao/Sketchy-frontend/blob/main/public/Sketchy.gif?raw=true)
 
 
 ## Installation
